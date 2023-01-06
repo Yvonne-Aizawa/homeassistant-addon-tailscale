@@ -100,7 +100,7 @@ You have several options to get them answered:
 - The Home Assistant [Community Forum][forum].
 - Join the [Reddit subreddit][reddit] in [/r/homeassistant][reddit]
 
-You could also [open an issue here][issue] GitHub.
+You could also [open an issue here with the original add-on][issue] or [open an issue here with the forked add-on][issue_forked] GitHub.
 
 ## Authors & contributors
 
@@ -140,7 +140,8 @@ SOFTWARE.
 [discord]: https://discord.me/hassioaddons
 [forum]: https://community.home-assistant.io/?u=frenck
 [frenck]: https://github.com/frenck
-[issue]: https://github.com/lmagyar/homeassistant-addon-tailscale/issues
+[issue]: https://github.com/hassio-addons/addon-tailscale/issues
+[issue_forked]: https://github.com/lmagyar/homeassistant-addon-tailscale/issues
 [reddit]: https://reddit.com/r/homeassistant
 [releases]: https://github.com/lmagyar/homeassistant-addon-tailscale/releases
 [semver]: http://semver.org/spec/v2.0.0.htm
