@@ -6,6 +6,8 @@
 >
 > **Installation:** Navigate in your Home Assistant frontend to **Settings** -> **Add-ons** -> **Add-on Store**, in the **...** menu at the top right corner click **Repositories**, add `https://github.com/lmagyar/homeassistant-addon-tailscale` as repository.
 >
+> This fork enables to provision TLS certificates.
+>
 > For more details, please see the Documentation below.
 
 ![Warning][warning_stripe]
@@ -65,6 +67,7 @@ subnet to Tailscale.
 tags:
   - tag:example
   - tag:homeassistant
+cert_domain: machine.tail9999.ts.net
 ```
 
 ### Option: `tags`
@@ -73,6 +76,20 @@ This option allows you to specify specific ACL tags for this Tailscale
 instance. They need to start with `tag:`.
 
 More information: <https://tailscale.com/kb/1068/acl-tags/>
+
+### Option: `cert_domain`
+
+This option (if set) configures tailscale to provision TLS certificates. The format is the same as for `tailscale cert <your-domain>`. It's necessary to set the exact domain under which your Home-Assistant instance is running. 
+
+1. Go to [DNS tab](https://login.tailscale.com/admin/dns)
+2. Enable HTTPS under HTTPS Certificates and choose a Tailnet domain alias
+3. Find your Home-Assistant in the [Machines tab](https://login.tailscale.com/admin/machines) and note under which name your device is reachable
+4. Your device should now be reachable under https://<device-name>.<tailnet-domain-alias>.ts.net (But with an invalid ssl certificate)
+5. Go to the options page of this addon and set the above domain at `cert_domain`
+6. Restart the addon, you should now have two new files under `/ssl/tailscale` which you can use to configure any webserver.
+7. Visit again the above domain, you should have now a valid ssl certificate.
+
+See [Enabling HTTPS](https://tailscale.com/kb/1153/enabling-https/) for more information.
 
 ## Changelog & Releases
 
@@ -100,7 +117,7 @@ You have several options to get them answered:
 - The Home Assistant [Community Forum][forum].
 - Join the [Reddit subreddit][reddit] in [/r/homeassistant][reddit]
 
-You could also [open an issue here][issue] GitHub.
+You could also [open an issue here with the original add-on][issue] or [open an issue here with the forked add-on][issue_forked] GitHub.
 
 ## Authors & contributors
 
@@ -134,13 +151,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 [addon-badge]: https://my.home-assistant.io/badges/supervisor_addon.svg
-[addon]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_tailscale&repository_url=https%3A%2F%2Fgithub.com%2Fhassio-addons%2Frepository
+[addon]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=09716aab_tailscale&repository_url=https%3A%2F%2Fgithub.com%2Flmagyar%2Fhomeassistant-addon-tailscale
 [contributors]: https://github.com/lmagyar/homeassistant-addon-tailscale/graphs/contributors
 [discord-ha]: https://discord.gg/c5DvZ4e
 [discord]: https://discord.me/hassioaddons
 [forum]: https://community.home-assistant.io/?u=frenck
 [frenck]: https://github.com/frenck
-[issue]: https://github.com/lmagyar/homeassistant-addon-tailscale/issues
+[issue]: https://github.com/hassio-addons/addon-tailscale/issues
+[issue_forked]: https://github.com/lmagyar/homeassistant-addon-tailscale/issues
 [reddit]: https://reddit.com/r/homeassistant
 [releases]: https://github.com/lmagyar/homeassistant-addon-tailscale/releases
 [semver]: http://semver.org/spec/v2.0.0.htm
