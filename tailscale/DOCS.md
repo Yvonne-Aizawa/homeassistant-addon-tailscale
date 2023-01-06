@@ -6,6 +6,8 @@
 >
 > **Installation:** Navigate in your Home Assistant frontend to **Settings** -> **Add-ons** -> **Add-on Store**, in the **...** menu at the top right corner click **Repositories**, add `https://github.com/lmagyar/homeassistant-addon-tailscale` as repository.
 >
+> This fork enables to provision TLS certificates.
+>
 > For more details, please see the Documentation below.
 
 ![Warning][warning_stripe]
@@ -65,6 +67,7 @@ subnet to Tailscale.
 tags:
   - tag:example
   - tag:homeassistant
+cert_domain: machine.tail9999.ts.net
 ```
 
 ### Option: `tags`
@@ -73,6 +76,20 @@ This option allows you to specify specific ACL tags for this Tailscale
 instance. They need to start with `tag:`.
 
 More information: <https://tailscale.com/kb/1068/acl-tags/>
+
+### Option: `cert_domain`
+
+This option (if set) configures tailscale to provision TLS certificates. The format is the same as for `tailscale cert <your-domain>`. It's necessary to set the exact domain under which your Home-Assistant instance is running. 
+
+1. Go to [DNS tab](https://login.tailscale.com/admin/dns)
+2. Enable HTTPS under HTTPS Certificates and choose a Tailnet domain alias
+3. Find your Home-Assistant in the [Machines tab](https://login.tailscale.com/admin/machines) and note under which name your device is reachable
+4. Your device should now be reachable under https://<device-name>.<tailnet-domain-alias>.ts.net (But with an invalid ssl certificate)
+5. Go to the options page of this addon and set the above domain at `cert_domain`
+6. Restart the addon and visit again the above domain. You should have now a valid ssl certificate.
+7. You should now have to new files under `/ssl` which you can use to configure any webserver.
+
+See [Enabling HTTPS](https://tailscale.com/kb/1153/enabling-https/) for more information.
 
 ## Changelog & Releases
 
