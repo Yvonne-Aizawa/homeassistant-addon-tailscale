@@ -23,8 +23,8 @@ fi
 bashio::log.info 'Starting Tailscale TLS certificate fetcher...'
 
 while true; do
+  sleep 86400 # Fetch certs once a day
   if ! tailscale_cert; then
     bashio::log.error "$cert_err"
   fi
-  sleep 86400 # Fetch certs once a day
 done
