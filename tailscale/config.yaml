@@ -1,6 +1,6 @@
 ---
 name: Tailscale
-version: 0.7.0.3
+version: 0.7.0.4
 slug: tailscale
 description: Zero config VPN for building secure networks
 url: https://github.com/yvonne-aizawa/homeassistant-addon-tailscale
@@ -27,6 +27,6 @@ host_network: true
 schema:
   tags: ["match(^tag:[a-zA-Z0-9]-?[a-zA-Z0-9]+$)?"]
   cert_domain: match(^[a-z0-9][a-z0-9\-_]{0,61}\.ts\.net$)?
-  login_domain: match(*)
-  login_auth: match(*)
+  login_url: "str"
+  login_auth: "str"
 image: ghcr.io/yvonne-aizawa/{arch}-addon-tailscale
