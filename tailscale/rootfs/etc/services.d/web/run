@@ -9,12 +9,12 @@ declare login_auth
 
 bashio::log.info 'Starting Tailscale web...'
 
-options+=(web) 
+# options+=(web) 
 # Get random port
-options+=(-listen 127.0.0.1:25899)
+# options+=(-listen 127.0.0.1:25899)
 
-options+=(--login-server=$(bashio::config login_url))
-options+=(--authkey="$(bashio::config login_auth)")
+options+=(--login-server $(bashio::config login_url))
+options+=(--authkey "$(bashio::config login_auth)")
 
 
 # Run Tailscale
