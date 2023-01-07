@@ -7,6 +7,7 @@ declare -a addresses
 declare -a routes
 declare ipinfo
 declare tags
+declare login_url
 
 # Find addresses from which we can extract routes can be advertised
 addresses+=($(bashio::network.ipv4_address || true))
@@ -36,6 +37,8 @@ done
 
 # Get configured tags
 tags=$(bashio::config "tags | join(\",\")" "")
+# get login_url
+login_url=$(bashio::config login_url)
 
 # Wait for socket to be available
 while ! bashio::fs.socket_exists "/var/run/tailscale/tailscaled.sock";

@@ -27,5 +27,5 @@ jobs:
           --no-cache \
           --${{ matrix.arch }} \
           --target tailscale \
-      env:
-        CAS_API_KEY: ${{ secrets.CAS_TOKEN }}
+      # env:
+      #   CAS_API_KEY: ${{ secrets.CAS_TOKEN }}
