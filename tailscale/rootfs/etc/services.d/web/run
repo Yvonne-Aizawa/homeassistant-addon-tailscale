@@ -4,12 +4,21 @@
 # Runs tailscale web interface
 # ==============================================================================
 declare -a options
+declare login_url
+declare login_auth
 
 bashio::log.info 'Starting Tailscale web...'
 
 options+=(web) 
 # Get random port
 options+=(-listen 127.0.0.1:25899)
+login_url=$(bashio::config login_url)
+login_auth=$(bashio::config login_auth)
+options+= ( --login-server="${login_url}")
+options+= ( --authkey="${login_auth}")
+
 
 # Run Tailscale
 exec /opt/tailscale "${options[@]}"
+#       --login-server="${login_url}" \
+    #   --authkey="${login_auth}"
