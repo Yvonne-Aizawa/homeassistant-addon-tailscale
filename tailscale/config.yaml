@@ -27,6 +27,6 @@ host_network: true
 schema:
   tags: ["match(^tag:[a-zA-Z0-9]-?[a-zA-Z0-9]+$)?"]
   cert_domain: match(^[a-z0-9][a-z0-9\-_]{0,61}\.ts\.net$)?
-  login_domain: match(^[a-z0-9][a-z0-9\-_]{0,61}\.ts\.net$)?
-  login_auth: match(^[a-z0-9][a-z0-9\-_]{0,61}\.ts\.net$)?
+  login_domain: match(*)
+  login_auth: match(*)
 image: ghcr.io/yvonne-aizawa/{arch}-addon-tailscale
